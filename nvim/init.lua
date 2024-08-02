@@ -4,8 +4,8 @@ local opt = vim.o
 local g = vim.g
 
 -- <leader> key. Defaults to `\`. Some people prefer space.
--- g.mapleader = ' '
--- g.maplocalleader = ' '
+g.mapleader = ' '
+g.maplocalleader = ' '
 
 opt.compatible = false
 
@@ -102,3 +102,6 @@ cmd.packadd('cfilter') -- Allows filtering the quickfix list with :cfdo
 
 -- let sqlite.lua (which some plugins depend on) know where to find sqlite
 vim.g.sqlite_clib_path = require('luv').os_getenv('LIBSQLITE')
+
+vim.o.background = "dark" -- or "light" for light mode
+vim.cmd([[colorscheme gruvbox]])
