@@ -42,6 +42,7 @@ with final.pkgs.lib; let
     cmp-cmdline # cmp command line suggestions
     cmp-cmdline-history # cmp command line history suggestions
     # ^ nvim-cmp extensions
+    conform-nvim # formatter | https://github.com/stevearc/conform.nvim/
     # git integration plugins
     diffview-nvim # https://github.com/sindrets/diffview.nvim/
     neogit # https://github.com/TimUntersberger/neogit/
@@ -63,6 +64,7 @@ with final.pkgs.lib; let
     gruvbox-nvim # Color theme
     # ^ Themes
     # language support
+    rustaceanvim
     # ^ language support
     # navigation/editing enhancement plugins
     vim-unimpaired # predefined ] and [ navigation keymaps | https://github.com/tpope/vim-unimpaired/
@@ -90,7 +92,15 @@ with final.pkgs.lib; let
   extraPackages = with pkgs; [
     # language servers, etc.
     lua-language-server
+    stylua
+    luajitPackages.luacheck
+
     nil # nix LSP
+
+    rustfmt
+    rust-analyzer
+    vscode-extensions.vadimcn.vscode-lldb.adapter # for rustaceanvim https://github.com/mrcjkb/rustaceanvim?tab=readme-ov-file#using-codelldb-for-debugging
+
   ];
 in {
   # This is the neovim derivation
