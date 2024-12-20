@@ -87,6 +87,12 @@ with final.pkgs.lib; let
     # (mkNvimPlugin inputs.wf-nvim "wf.nvim") # (example) keymap hints | https://github.com/Cassin01/wf.nvim
     # ^ bleeding-edge plugins from flake inputs
     which-key-nvim
+    snacks-nvim
+    obsidian-nvim
+    render-markdown-nvim
+    harpoon2
+    codeium-nvim
+
   ];
 
   extraPackages = with pkgs; [

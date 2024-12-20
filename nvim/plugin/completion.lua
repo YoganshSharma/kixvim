@@ -44,6 +44,7 @@ cmp.setup {
         nvim_lua = '[API]',
         path = '[PATH]',
         luasnip = '[SNIP]',
+        Codeium = "",
       },
     },
   },
@@ -107,6 +108,7 @@ cmp.setup {
     { name = 'nvim_lsp_signature_help', keyword_length = 3 },
     { name = 'buffer' },
     { name = 'path' },
+    { name = 'codeium' },
   },
   enabled = function()
     return vim.bo[0].buftype ~= 'prompt'

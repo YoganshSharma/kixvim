@@ -6,7 +6,7 @@ vim.keymap.set(
     vim.cmd.RustLsp('codeAction') -- supports rust-analyzer's grouping
     -- or vim.lsp.buf.codeAction() if you don't want grouping.
   end,
-  { silent = true, buffer = bufnr, description = "Rust Code Action" }
+  { silent = true, buffer = bufnr, desc = "Rust Code Action" }
 )
 vim.keymap.set(
   "n",
@@ -23,7 +23,7 @@ vim.keymap.set(
   function()
     vim.cmd.RustLsp('joinLines')
   end,
-  { silent = true, buffer = bufnr, description = "Rust Join Lines" }
+  { silent = true, buffer = bufnr, desc = "Rust Join Lines" }
 )
 
 vim.keymap.set(
@@ -32,7 +32,7 @@ vim.keymap.set(
   function()
     vim.cmd.RustLsp('openDocs')
   end,
-  { silent = true, buffer = bufnr, description = "Rust open docs.rs" }
+  { silent = true, buffer = bufnr, desc = "Rust open docs.rs" }
 )
 
 vim.keymap.set(
@@ -41,7 +41,7 @@ vim.keymap.set(
   function()
     vim.cmd.RustLsp('openCargo')
   end,
-  { silent = true, buffer = bufnr, description = "Rust open cargo" }
+  { silent = true, buffer = bufnr, desc = "Rust open cargo" }
 )
 
 vim.keymap.set(
@@ -50,7 +50,7 @@ vim.keymap.set(
   function()
     vim.cmd.RustLsp { 'moveItem',  'down' }
   end,
-  { silent = true, buffer = bufnr, description = "Rust move down" }
+  { silent = true, buffer = bufnr, desc = "Rust move down" }
 )
 
 vim.keymap.set(
@@ -59,7 +59,7 @@ vim.keymap.set(
   function()
     vim.cmd.RustLsp { 'moveItem',  'up' }
   end,
-  { silent = true, buffer = bufnr, description = "Rust move up" }
+  { silent = true, buffer = bufnr, desc = "Rust move up" }
 )
 
 vim.keymap.set(
@@ -68,7 +68,7 @@ vim.keymap.set(
   function()
     vim.cmd.RustLsp('parentModule')
   end,
-  { silent = true, buffer = bufnr, description = "Rust Goto Parent Module" }
+  { silent = true, buffer = bufnr, desc = "Rust Goto Parent Module" }
 )
 
 vim.keymap.set(
@@ -77,5 +77,5 @@ vim.keymap.set(
   function()
     vim.cmd.RustLsp('parentModule')
   end,
-  { silent = true, buffer = bufnr, description = "Rust Goto Parent Module" }
+  { silent = true, buffer = bufnr, desc = "Rust Goto Parent Module" }
 )
