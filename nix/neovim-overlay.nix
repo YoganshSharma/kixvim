@@ -102,10 +102,26 @@ with final.pkgs.lib; let
     luajitPackages.luacheck
 
     nil # nix LSP
+    nixfmt-rfc-style
+    statix #  lints and suggestions for nix
 
     rustfmt
     rust-analyzer
     vscode-extensions.vadimcn.vscode-lldb.adapter # for rustaceanvim https://github.com/mrcjkb/rustaceanvim?tab=readme-ov-file#using-codelldb-for-debugging
+
+    # C/C++
+    ccls # language server for C++ powered by clang
+    cmake-language-server
+    clang # for clangd
+
+    # Golang
+    gopls # language server for Go
+
+    bash-language-server # bashls
+    pylyzer # python
+    fish-lsp
+    inputs.bqnlsp.packages.${pkgs.system}.default
+
 
   ];
 in {
