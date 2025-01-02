@@ -120,7 +120,7 @@ with final.pkgs.lib; let
     bash-language-server # bashls
     pylyzer # python
     fish-lsp
-    inputs.bqnlsp.packages.${pkgs.system}.default
+    # inputs.bqnlsp.packages.${pkgs.system}.default
 
 
   ];
