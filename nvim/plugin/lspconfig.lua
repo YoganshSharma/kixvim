@@ -1,5 +1,5 @@
 local lspconfig = require('lspconfig')
-lspconfig.rust_analyzer.setup {}
+-- lspconfig.rust_analyzer.setup {} -- done by rustaceanvim
 lspconfig.ccls.setup {}
 lspconfig.cmake.setup {}
 lspconfig.clangd.setup {}
