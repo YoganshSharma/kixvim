@@ -5,7 +5,7 @@ lspconfig.cmake.setup {}
 lspconfig.clangd.setup {}
 
 lspconfig.gopls.setup {}
-lspconfig.pylyzer.setup {}
+lspconfig.basedpyright.setup {}
 
 lspconfig.statix.setup {}
 lspconfig.nil_ls.setup {

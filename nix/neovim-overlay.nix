@@ -118,7 +118,7 @@ with final.pkgs.lib; let
     gopls # language server for Go
 
     bash-language-server # bashls
-    pylyzer # python
+    basedpyright # python
     fish-lsp
     # inputs.bqnlsp.packages.${pkgs.system}.default
 
