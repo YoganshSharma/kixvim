@@ -122,6 +122,7 @@ with final.pkgs.lib; let
     black # python formatter
     fish-lsp
     # inputs.bqnlsp.packages.${pkgs.system}.default
+    matlab-language-server
 
 
   ];

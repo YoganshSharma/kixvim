@@ -22,3 +22,4 @@ lspconfig.nil_ls.setup {
 lspconfig.bashls.setup {}
 lspconfig.fish_lsp.setup {}
 lspconfig.bqnlsp.setup {}
+lspconfig.matlab_ls.setup {}
