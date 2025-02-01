@@ -119,6 +119,7 @@ with final.pkgs.lib; let
 
     bash-language-server # bashls
     basedpyright # python
+    black # python formatter
     fish-lsp
     # inputs.bqnlsp.packages.${pkgs.system}.default
 
