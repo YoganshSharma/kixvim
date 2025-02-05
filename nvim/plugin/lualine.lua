@@ -41,19 +41,26 @@ require('lualine').setup {
   globalstatus = true,
   sections = {
     lualine_c = {
-      -- nvim-navic
-      { navic.get_location, cond = navic.is_available },
+      {
+        function()
+          return navic.get_location()
+        end,
+        cond = function()
+          return navic.is_available()
+        end
+      },
     },
 
     lualine_z = {
       -- (see above)
-      { codeium_status, extra_mode_status },
+      { codeium_status }, { extra_mode_status },
+
     },
   },
   options = {
     theme = 'auto',
   },
-  -- Example top tabline configuration (this may clash with other plugins)
+  -- Example top tabline configuration (Clashes with barbar.nvim)
   -- tabline = {
   --   lualine_a = {
   --     {
