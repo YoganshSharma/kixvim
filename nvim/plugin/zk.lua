@@ -28,6 +28,11 @@ keymap.set("n", "<leader>zn", function()
   vim.cmd("ZkNew { title = vim.fn.input('Title: ') }")
 end, { desc = "Create a new note", unpack(opts) })
 
+-- Open today's journal
+keymap.set("n", "<leader>zj", function()
+  vim.cmd("ZkNew { group = \"journal\" }")
+end, { desc = "Open today's journal", unpack(opts) })
+
 -- Open notes.
 keymap.set("n", "<leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", { desc = "Open notes", unpack(opts) })
 
