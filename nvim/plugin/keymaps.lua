@@ -11,15 +11,15 @@ local diagnostic = vim.diagnostic
 -- Yank from current position till end of current line
 keymap.set('n', 'Y', 'y$', { silent = true, desc = '[Y]ank to end of line' })
 
--- Buffer list navigation
-keymap.set('n', '[b', vim.cmd.bprevious, { silent = true, desc = 'previous [b]uffer' })
-keymap.set('n', ']b', vim.cmd.bnext, { silent = true, desc = 'next [b]uffer' })
-keymap.set('n', '[B', vim.cmd.bfirst, { silent = true, desc = 'first [B]uffer' })
-keymap.set('n', ']B', vim.cmd.blast, { silent = true, desc = 'last [B]uffer' })
+-- Buffer list navigation -- moved to barbar.lua
+-- keymap.set('n', '[b', vim.cmd.bprevious, { silent = true, desc = 'previous [b]uffer' })
+-- keymap.set('n', ']b', vim.cmd.bnext, { silent = true, desc = 'next [b]uffer' })
+-- keymap.set('n', '[B', vim.cmd.bfirst, { silent = true, desc = 'first [B]uffer' })
+-- keymap.set('n', ']B', vim.cmd.blast, { silent = true, desc = 'last [B]uffer' })
 
 -- Better tabbing
-keymap.set("v", "<", "<gv", {noremap = true})
-keymap.set("v", ">", ">gv",  {noremap = true})
+keymap.set("v", "<", "<gv", { noremap = true })
+  keymap.set("v", ">", ">gv", { noremap = true })
 
 -- Toggle the quickfix list (only opens if it is populated)
 local function toggle_qf_list()
@@ -97,25 +97,25 @@ keymap.set('n', ']L', vim.cmd.llast, { silent = true, desc = 'last [L]oclist ent
 
 -- Resize vertical splits
 local toIntegral = math.ceil
-keymap.set('n', '<leader>w+', function()
+keymap.set('n', '<leader>wW', function()
   local curWinWidth = api.nvim_win_get_width(0)
   api.nvim_win_set_width(0, toIntegral(curWinWidth * 3 / 2))
 end, { silent = true, desc = 'inc window [w]idth' })
-keymap.set('n', '<leader>w-', function()
+keymap.set('n', '<leader>ww', function()
   local curWinWidth = api.nvim_win_get_width(0)
   api.nvim_win_set_width(0, toIntegral(curWinWidth * 2 / 3))
 end, { silent = true, desc = 'dec window [w]idth' })
-keymap.set('n', '<leader>h+', function()
+keymap.set('n', '<leader>wH', function()
   local curWinHeight = api.nvim_win_get_height(0)
   api.nvim_win_set_height(0, toIntegral(curWinHeight * 3 / 2))
 end, { silent = true, desc = 'inc window [h]eight' })
-keymap.set('n', '<leader>h-', function()
+keymap.set('n', '<leader>wh', function()
   local curWinHeight = api.nvim_win_get_height(0)
   api.nvim_win_set_height(0, toIntegral(curWinHeight * 2 / 3))
 end, { silent = true, desc = 'dec window [h]eight' })
 
 -- Close floating windows [Neovim 0.10 and above]
-keymap.set('n', '<leader>fq', function()
+keymap.set('n', '<leader>wfq', function()
   vim.cmd('fclose!')
 end, { silent = true, desc = '[f]loating windows: [q]uit/close all' })
 

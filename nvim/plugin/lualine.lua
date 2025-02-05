@@ -26,6 +26,16 @@ local function extra_mode_status()
   end
   return ''
 end
+local function codeium_status()
+  local status = require('codeium.virtual_text').status_string()
+  if status == " 0 " then
+    return ''
+  end
+  if status == " * " then
+    return 'LCR' -- loading codeium responses
+  end
+  return status
+end
 
 require('lualine').setup {
   globalstatus = true,
@@ -34,9 +44,10 @@ require('lualine').setup {
       -- nvim-navic
       { navic.get_location, cond = navic.is_available },
     },
+
     lualine_z = {
       -- (see above)
-      { extra_mode_status },
+      { codeium_status, extra_mode_status },
     },
   },
   options = {
@@ -73,15 +84,15 @@ require('lualine').setup {
   --   lualine_y = {},
   --   lualine_z = {},
   -- },
-  winbar = {
-    lualine_z = {
-      {
-        'filename',
-        path = 1,
-        file_status = true,
-        newfile_status = true,
-      },
-    },
-  },
+  -- winbar = {
+  --   lualine_z = {
+  --     {
+  --       'filename',
+  --       path = 1,
+  --       file_status = true,
+  --       newfile_status = true,
+  --     },
+  --   },
+  -- },
   extensions = { 'fugitive', 'fzf', 'toggleterm', 'quickfix' },
 }

@@ -90,8 +90,10 @@ with final.pkgs.lib; let
     snacks-nvim
     obsidian-nvim
     render-markdown-nvim
-    harpoon2
+    # harpoon2 # TODO configure this
     codeium-nvim
+    zk-nvim
+    barbar-nvim
 
   ];
 
@@ -123,6 +125,7 @@ with final.pkgs.lib; let
     fish-lsp
     # inputs.bqnlsp.packages.${pkgs.system}.default
     matlab-language-server
+    zk # for zk-nvim
 
 
   ];
