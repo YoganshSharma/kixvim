@@ -62,6 +62,7 @@ with final.pkgs.lib; let
     # ^ UI
     # Themes
     gruvbox-nvim # Color theme
+    nord-nvim # Color theme
     # ^ Themes
     # language support
     rustaceanvim

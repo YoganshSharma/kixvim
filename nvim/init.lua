@@ -104,4 +104,4 @@ cmd.packadd('cfilter') -- Allows filtering the quickfix list with :cfdo
 vim.g.sqlite_clib_path = require('luv').os_getenv('LIBSQLITE')
 
 vim.o.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[colorscheme nord]])
