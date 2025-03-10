@@ -127,6 +127,7 @@ with final.pkgs.lib; let
     # inputs.bqnlsp.packages.${pkgs.system}.default
     matlab-language-server
     zk # for zk-nvim
+    harper # for harper-ls
 
 
   ];

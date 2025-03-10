@@ -23,3 +23,6 @@ lspconfig.bashls.setup {}
 lspconfig.fish_lsp.setup {}
 lspconfig.bqnlsp.setup {}
 lspconfig.matlab_ls.setup {}
+
+-- Grammar checker
+lspconfig.harper_ls.setup {}
