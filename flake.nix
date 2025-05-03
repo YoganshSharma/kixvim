@@ -5,6 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     gen-luarc.url = "github:mrcjkb/nix-gen-luarc-json";
+    nixneovimplugins.url = github:NixNeovim/NixNeovimPlugins;
     # bqnlsp.url = "sourcehut:~detegr/bqnlsp";
 
     # Add bleeding-edge plugins here.
@@ -43,6 +44,7 @@
           # containing the Neovim API all plugins in the workspace directory.
           # The generated file can be symlinked in the devShell's shellHook.
           gen-luarc.overlays.default
+          inputs.nixneovimplugins.overlays.default
         ];
       };
       shell = pkgs.mkShell {

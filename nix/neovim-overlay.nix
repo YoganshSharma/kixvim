@@ -96,6 +96,8 @@ with final.pkgs.lib; let
     zk-nvim
     barbar-nvim
 
+  ] ++ [
+    pkgs.vimExtraPlugins.img-clip-nvim
   ];
 
   extraPackages = with pkgs; [
