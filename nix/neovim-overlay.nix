@@ -98,6 +98,7 @@ with final.pkgs.lib; let
 
   ] ++ [
     pkgs.vimExtraPlugins.img-clip-nvim
+    pkgs.vimExtraPlugins.cmp-natdat
   ];
 
   extraPackages = with pkgs; [

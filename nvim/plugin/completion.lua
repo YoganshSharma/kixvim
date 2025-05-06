@@ -44,6 +44,7 @@ cmp.setup {
         nvim_lua = '[API]',
         path = '[PATH]',
         luasnip = '[SNIP]',
+        natdat = '[NatDat]',
         Codeium = "",
       },
     },
@@ -109,6 +110,7 @@ cmp.setup {
     { name = 'buffer' },
     { name = 'path' },
     { name = 'codeium' },
+    { name = 'natdat' },
   },
   enabled = function()
     return vim.bo[0].buftype ~= 'prompt'
