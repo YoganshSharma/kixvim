@@ -115,6 +115,10 @@ with final.pkgs.lib; let
     rust-analyzer
     vscode-extensions.vadimcn.vscode-lldb.adapter # for rustaceanvim https://github.com/mrcjkb/rustaceanvim?tab=readme-ov-file#using-codelldb-for-debugging
 
+    # Javascript/Typescript
+    typescript-language-server
+    typescript
+
     # C/C++
     ccls # language server for C++ powered by clang
     cmake-language-server

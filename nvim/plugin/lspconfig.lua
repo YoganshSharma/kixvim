@@ -24,5 +24,6 @@ lspconfig.fish_lsp.setup {}
 lspconfig.bqnlsp.setup {}
 lspconfig.matlab_ls.setup {}
 
+lspconfig.ts_ls.setup {}
 -- Grammar checker
 lspconfig.harper_ls.setup {}
