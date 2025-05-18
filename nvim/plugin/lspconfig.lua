@@ -26,4 +26,9 @@ lspconfig.matlab_ls.setup {}
 
 lspconfig.ts_ls.setup {}
 -- Grammar checker
-lspconfig.harper_ls.setup {}
+lspconfig.harper_ls.setup {
+  filetypes = { "markdown" },
+  linters = {
+    SentenceCapitalization = true
+  }
+}
