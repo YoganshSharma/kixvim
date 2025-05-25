@@ -25,6 +25,9 @@ lspconfig.bqnlsp.setup {}
 lspconfig.matlab_ls.setup {}
 
 lspconfig.ts_ls.setup {}
+lspconfig.svelte.setup {}
+lspconfig.tailwindcss.setup {}
+
 -- Grammar checker
 lspconfig.harper_ls.setup {
   filetypes = { "markdown" },

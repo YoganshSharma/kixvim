@@ -119,6 +119,7 @@ with final.pkgs.lib; let
     typescript-language-server
     typescript
     svelte-language-server
+    tailwindcss-language-server
 
     # C/C++
     ccls # language server for C++ powered by clang
