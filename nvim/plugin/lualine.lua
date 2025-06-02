@@ -26,16 +26,6 @@ local function extra_mode_status()
   end
   return ''
 end
-local function codeium_status()
-  local status = require('codeium.virtual_text').status_string()
-  if status == " 0 " then
-    return ''
-  end
-  if status == " * " then
-    return 'LCR' -- loading codeium responses
-  end
-  return status
-end
 
 require('lualine').setup {
   globalstatus = true,
@@ -53,7 +43,7 @@ require('lualine').setup {
 
     lualine_z = {
       -- (see above)
-      { codeium_status }, { extra_mode_status },
+      { extra_mode_status },
 
     },
   },

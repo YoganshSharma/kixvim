@@ -32,6 +32,7 @@ cmp.setup {
   formatting = {
     format = lspkind.cmp_format {
       mode = 'symbol_text',
+      
       with_text = true,
       maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
       ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
@@ -45,7 +46,7 @@ cmp.setup {
         path = '[PATH]',
         luasnip = '[SNIP]',
         natdat = '[NatDat]',
-        Codeium = "",
+        Copilot = "",
       },
     },
   },
@@ -107,9 +108,9 @@ cmp.setup {
     -- The insertion order influences the priority of the sources
     { name = 'nvim_lsp', keyword_length = 3 },
     { name = 'nvim_lsp_signature_help', keyword_length = 3 },
+    { name = 'copilot' },
     { name = 'buffer' },
     { name = 'path' },
-    { name = 'codeium' },
     { name = 'natdat' },
   },
   enabled = function()

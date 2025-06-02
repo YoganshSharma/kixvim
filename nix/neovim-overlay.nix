@@ -92,13 +92,17 @@ with final.pkgs.lib; let
     obsidian-nvim
     render-markdown-nvim
     # harpoon2 # TODO configure this
-    codeium-nvim
     zk-nvim
     barbar-nvim
 
   ] ++ [
     pkgs.vimExtraPlugins.img-clip-nvim
     pkgs.vimExtraPlugins.cmp-natdat
+
+    # Copilot
+    pkgs.vimExtraPlugins.copilot-lua
+    pkgs.vimExtraPlugins.copilot-cmp
+    pkgs.vimExtraPlugins.CopilotChat-nvim
   ];
 
   extraPackages = with pkgs; [

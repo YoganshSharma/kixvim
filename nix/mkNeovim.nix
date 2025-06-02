@@ -10,7 +10,7 @@ with lib;
   {
     # NVIM_APPNAME - Defaults to 'nvim' if not set.
     # If set to something else, this will also rename the binary.
-    appName ? null,
+    appName ? "kvim",
     # The Neovim package to wrap
     neovim-unwrapped ? pkgs-wrapNeovim.neovim-unwrapped,
     plugins ? [], # List of plugins
