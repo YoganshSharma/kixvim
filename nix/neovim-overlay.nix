@@ -141,6 +141,7 @@ with final.pkgs.lib; let
     matlab-language-server
     zk # for zk-nvim
     harper # for harper-ls
+    marksman # for markdown
 
 
   ];

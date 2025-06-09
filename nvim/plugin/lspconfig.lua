@@ -28,6 +28,7 @@ lspconfig.ts_ls.setup {}
 lspconfig.svelte.setup {}
 lspconfig.tailwindcss.setup {}
 
+lspconfig.marksman.setup {}
 -- Grammar checker
 lspconfig.harper_ls.setup {
   filetypes = { "markdown" },
