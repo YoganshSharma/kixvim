@@ -103,6 +103,7 @@ vim.keymap.set(
   builtin.lsp_dynamic_workspace_symbols,
   { desc = '[t]elescope lsp dynamic w[o]rkspace symbols' }
 )
+vim.keymap.set('n', '<leader>tn', telescope.extensions.notify.notify, { desc = '[t]elescope lsp [d]ocument symbols' })
 
 telescope.setup {
   defaults = {

@@ -98,6 +98,10 @@ with final.pkgs.lib; let
   ] ++ [
     pkgs.vimExtraPlugins.img-clip-nvim
     pkgs.vimExtraPlugins.cmp-natdat
+    pkgs.vimExtraPlugins.nvim-colorizer-catgoose
+    pkgs.vimExtraPlugins.markdown-preview-nvim
+    pkgs.vimExtraPlugins.nvim-notify
+
 
     # Copilot
     pkgs.vimExtraPlugins.copilot-lua

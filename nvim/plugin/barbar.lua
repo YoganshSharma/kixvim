@@ -8,7 +8,7 @@ keymap.set('n', ']b',  '<Cmd>BufferNext<CR>', { silent = true, desc = 'next [b]u
 keymap.set('n', '[B', '<Cmd>BufferFirst<CR>', { silent = true, desc = 'first [B]uffer' })
 keymap.set('n', ']B', '<Cmd>BufferLast<CR>', { silent = true, desc = 'last [B]uffer' })
 keymap.set('n', '<leader>bn', '<Cmd>BufferNext<CR>', { desc = '[b]uffer [n]ext' })
-keymap.set('n', '<leader>bp', '<Cmd>BufferPrevious<CR>', { desc = '[b]uffer [n]ext' })
+keymap.set('n', '<leader>bp', '<Cmd>BufferPrevious<CR>', { desc = '[b]uffer [p]revious' })
 
 -- Re-order to previous/next
 keymap.set('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)

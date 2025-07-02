@@ -132,9 +132,6 @@ keymap.set('c', '%%', function()
   end
 end, { expr = true, desc = "expand to current buffer's directory" })
 
-keymap.set('n', '<space>tn', vim.cmd.tabnew, { desc = '[t]ab: [n]ew' })
-keymap.set('n', '<space>tq', vim.cmd.tabclose, { desc = '[t]ab: [q]uit/close' })
-
 local severity = diagnostic.severity
 
 keymap.set('n', '<space>e', function()
@@ -192,6 +189,16 @@ keymap.set('n', '<C-b>', '<C-b>zz', { desc = 'move UP full-page and center' })
 
 
 keymap.set('n', '<leader>p', '<cmd>PasteImage<cr>', { desc = 'Paste image from system clipboard' })
+keymap.set('n', '<leader>fp', function()
+  local path = vim.fn.expand('%:p')
+  vim.notify(path, vim.log.levels.INFO, { title = "Current File Path" })
+end, { desc = '[f]ile [p]ath' })
+keymap.set('n', '<leader>fe', '<cmd>Ex<cr>', { desc = '[f]ile [e]xplorer' })
+
+local notify = require('notify')
+keymap.set('n', '<leader>nd', function()
+  notify.dismiss({ silent = true, pending = true })
+end, { silent = true, desc = 'Notification dismiss' })
 
 --- Disabled keymaps [enable at your own risk]
 

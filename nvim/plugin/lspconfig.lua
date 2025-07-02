@@ -34,5 +34,11 @@ lspconfig.harper_ls.setup {
   filetypes = { "markdown" },
   linters = {
     SentenceCapitalization = true
-  }
+  },
+  on_attach = function(client, bufnr)
+    vim.diagnostic.config({
+      virtual_text = false,
+    }, bufnr)
+  end,
+
 }
