@@ -94,6 +94,7 @@ with final.pkgs.lib; let
     # harpoon2 # TODO configure this
     zk-nvim
     barbar-nvim
+    aw-watcher-nvim
 
   ] ++ [
     pkgs.vimExtraPlugins.img-clip-nvim
