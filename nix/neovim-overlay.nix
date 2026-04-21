@@ -111,42 +111,42 @@ with final.pkgs.lib; let
   ];
 
   extraPackages = with pkgs; [
-    # language servers, etc.
-    lua-language-server
-    stylua
-    luajitPackages.luacheck
+    # language servers, etc. conflicts with devShell , disabled
+    # lua-language-server
+    # stylua
+    # luajitPackages.luacheck
 
-    nil # nix LSP
-    nixfmt-rfc-style
-    statix #  lints and suggestions for nix
+    # nil # nix LSP
+    # nixfmt-rfc-style
+    # statix #  lints and suggestions for nix
 
-    rustfmt
-    rust-analyzer
+    # rustfmt
+    # rust-analyzer
     vscode-extensions.vadimcn.vscode-lldb.adapter # for rustaceanvim https://github.com/mrcjkb/rustaceanvim?tab=readme-ov-file#using-codelldb-for-debugging
 
     # Javascript/Typescript
-    typescript-language-server
-    typescript
-    svelte-language-server
-    tailwindcss-language-server
-
-    # C/C++
-    ccls # language server for C++ powered by clang
-    cmake-language-server
-    clang # for clangd
-
-    # Golang
-    gopls # language server for Go
-
-    bash-language-server # bashls
-    basedpyright # python
-    black # python formatter
-    fish-lsp
-    # inputs.bqnlsp.packages.${pkgs.system}.default
-    matlab-language-server
-    zk # for zk-nvim
-    harper # for harper-ls
-    marksman # for markdown
+    # typescript-language-server
+    # typescript
+    # svelte-language-server
+    # tailwindcss-language-server
+    #
+    # # C/C++
+    # ccls # language server for C++ powered by clang
+    # cmake-language-server
+    # clang # for clangd
+    #
+    # # Golang
+    # gopls # language server for Go
+    #
+    # bash-language-server # bashls
+    # basedpyright # python
+    # black # python formatter
+    # fish-lsp
+    # # inputs.bqnlsp.packages.${pkgs.system}.default
+    # matlab-language-server
+    # zk # for zk-nvim
+    # harper # for harper-ls
+    # marksman # for markdown
 
 
   ];
