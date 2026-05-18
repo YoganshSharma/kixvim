@@ -1,14 +1,14 @@
-local lspconfig = require('lspconfig')
--- lspconfig.rust_analyzer.setup {} -- done by rustaceanvim
-lspconfig.ccls.setup {}
-lspconfig.cmake.setup {}
-lspconfig.clangd.setup {}
+local lspconfig = vim.lsp.config
+-- lspconfig('rust_analyzer', {}) -- done by rustaceanvim
+lspconfig('ccls', {})
+lspconfig('cmake', {})
+lspconfig('clangd', {})
 
-lspconfig.gopls.setup {}
-lspconfig.basedpyright.setup {}
+lspconfig('gopls', {})
+lspconfig('basedpyright', {})
 
-lspconfig.statix.setup {}
-lspconfig.nil_ls.setup {
+lspconfig('statix', {})
+lspconfig('nil_ls', {
   autostart = true,
   settings = {
     ['nil'] = {
@@ -17,20 +17,20 @@ lspconfig.nil_ls.setup {
       },
     },
   },
-}
+})
 
-lspconfig.bashls.setup {}
-lspconfig.fish_lsp.setup {}
-lspconfig.bqnlsp.setup {}
-lspconfig.matlab_ls.setup {}
+lspconfig('bashls', {})
+lspconfig('fish_lsp', {})
+lspconfig('bqnlsp', {})
+lspconfig('matlab_ls', {})
 
-lspconfig.ts_ls.setup {}
-lspconfig.svelte.setup {}
-lspconfig.tailwindcss.setup {}
+lspconfig('ts_ls', {})
+lspconfig('svelte', {})
+lspconfig('tailwindcss', {})
 
-lspconfig.marksman.setup {}
+lspconfig('marksman', {})
 -- Grammar checker
-lspconfig.harper_ls.setup {
+lspconfig('harper_ls', {
   filetypes = { "markdown" },
   linters = {
     SentenceCapitalization = true
@@ -41,4 +41,4 @@ lspconfig.harper_ls.setup {
     }, bufnr)
   end,
 
-}
+})

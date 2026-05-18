@@ -12,6 +12,7 @@ wk.add({
   { "<leader>tb", group = "[t]elescope [b]uffers group" },
   { "<leader>w",  group = "[w]indow group" },
   { "<leader>z",  group = "[z]k group" },
+  { "<leader>9",  group = "[9]9 group" },
 })
 wk.setup {
   preset = 'helix'

@@ -1,18 +1,19 @@
 # Function for creating a Neovim derivation
 {
-  pkgs,
   lib,
   stdenv,
+  sqlite,
+  git,
+  neovim-unwrapped,
   # Set by the overlay to ensure we use a compatible version of `wrapNeovimUnstable`
-  pkgs-wrapNeovim ? pkgs,
+  wrapNeovimUnstable,
+  neovimUtils,
 }:
 with lib;
   {
     # NVIM_APPNAME - Defaults to 'nvim' if not set.
     # If set to something else, this will also rename the binary.
-    appName ? "nvim",
-    # The Neovim package to wrap
-    neovim-unwrapped ? pkgs-wrapNeovim.neovim-unwrapped,
+    appName ? null,
     plugins ? [], # List of plugins
     # List of dev plugins (will be bootstrapped) - useful for plugin developers
     # { name = <plugin-name>; url = <git-url>; }
@@ -32,8 +33,11 @@ with lib;
     withSqlite ? true, # Add sqlite? This is a dependency for some plugins
     # You probably don't want to create vi or vim aliases
     # if the appName is something different than "nvim"
-    viAlias ? appName == "nvim", # Add a "vi" binary to the build output as an alias?
-    vimAlias ? appName == "nvim", # Add a "vim" binary to the build output as an alias?
+    # Add a "vi" binary to the build output as an alias?
+    viAlias ? appName == null || appName == "nvim",
+    # Add a "vim" binary to the build output as an alias?
+    vimAlias ? appName == null || appName == "nvim",
+    wrapRc ? true,
   }: let
     # This is the structure of a plugin definition.
     # Each plugin in the `plugins` argument list can also be defined as this attrset
@@ -44,10 +48,9 @@ with lib;
       # set to `true`, it is installed in the 'opt' packpath, and can be lazy loaded with
       # ':packadd! {plugin-name}
       optional = false;
-      runtime = {};
     };
 
-    externalPackages = extraPackages ++ (optionals withSqlite [pkgs.sqlite]);
+    externalPackages = extraPackages ++ (optionals withSqlite [sqlite]);
 
     # Map all plugins to an attrset { plugin = <plugin>; config = <config>; optional = <tf>; ... }
     normalizedPlugins = map (x:
@@ -58,13 +61,6 @@ with lib;
         else {plugin = x;}
       ))
     plugins;
-
-    # This nixpkgs util function creates an attrset
-    # that pkgs.wrapNeovimUnstable uses to configure the Neovim build.
-    neovimConfig = pkgs-wrapNeovim.neovimUtils.makeNeovimConfig {
-      inherit extraPython3Packages withPython3 withRuby withNodeJs viAlias vimAlias;
-      plugins = normalizedPlugins;
-    };
 
     # This uses the ignoreConfigRegexes list to filter
     # the nvim directory
@@ -97,11 +93,17 @@ with lib;
       '';
 
       installPhase = ''
-        cp -r after $out/after
-        rm -r after
         cp -r lua $out/lua
         rm -r lua
-        cp -r * $out/nvim
+        # Copy nvim/after only if it exists
+        if [ -d "after" ]; then
+            cp -r after $out/after
+            rm -r after
+        fi
+        # Copy rest of nvim/ subdirectories only if they exist
+        if [ ! -z "$(ls -A)" ]; then
+            cp -r -- * $out/nvim
+        fi
       '';
     };
 
@@ -111,7 +113,6 @@ with lib;
     # It also adds logic for bootstrapping dev plugins (for plugin developers)
     initLua =
       ''
-        vim.loader.enable()
         -- prepend lua directory
         vim.opt.rtp:prepend('${nvimRtp}/lua')
       ''
@@ -130,7 +131,7 @@ with lib;
           dev_plugin_path = dev_plugins_dir .. '/${plugin.name}'
           if vim.fn.empty(vim.fn.glob(dev_plugin_path)) > 0 then
             vim.notify('Bootstrapping dev plugin ${plugin.name} ...', vim.log.levels.INFO)
-            vim.cmd('!${pkgs.git}/bin/git clone ${plugin.url} ' .. dev_plugin_path)
+            vim.cmd('!${git}/bin/git clone ${plugin.url} ' .. dev_plugin_path)
           end
           vim.cmd('packadd! ${plugin.name}')
         '')
@@ -147,7 +148,10 @@ with lib;
       '';
 
     # Add arguments to the Neovim wrapper script
-    extraMakeWrapperArgs = builtins.concatStringsSep " " (
+    extraMakeWrapperArgs = let
+      sqliteLibExt = stdenv.hostPlatform.extensions.sharedLibrary;
+      sqliteLibPath = "${sqlite.out}/lib/libsqlite3${sqliteLibExt}";
+    in builtins.concatStringsSep " " (
       # Set the NVIM_APPNAME environment variable
       (optional (appName != "nvim" && appName != null && appName != "")
         ''--set NVIM_APPNAME "${appName}"'')
@@ -156,10 +160,10 @@ with lib;
         ''--prefix PATH : "${makeBinPath externalPackages}"'')
       # Set the LIBSQLITE_CLIB_PATH if sqlite is enabled
       ++ (optional withSqlite
-        ''--set LIBSQLITE_CLIB_PATH "${pkgs.sqlite.out}/lib/libsqlite3.so"'')
+        ''--set LIBSQLITE_CLIB_PATH "${sqliteLibPath}"'')
       # Set the LIBSQLITE environment variable if sqlite is enabled
       ++ (optional withSqlite
-        ''--set LIBSQLITE "${pkgs.sqlite.out}/lib/libsqlite3.so"'')
+        ''--set LIBSQLITE "${sqliteLibPath}"'')
     );
 
     luaPackages = neovim-unwrapped.lua.pkgs;
@@ -176,19 +180,18 @@ with lib;
       ''--suffix LUA_PATH ";" "${concatMapStringsSep ";" luaPackages.getLuaPath resolvedExtraLuaPackages}"'';
 
     # wrapNeovimUnstable is the nixpkgs utility function for building a Neovim derivation.
-    neovim-wrapped = pkgs-wrapNeovim.wrapNeovimUnstable neovim-unwrapped (neovimConfig
-      // {
+    neovim-wrapped = wrapNeovimUnstable neovim-unwrapped {
+        inherit extraPython3Packages withPython3 withRuby withNodeJs viAlias vimAlias;
+        plugins = normalizedPlugins;
+
         luaRcContent = initLua;
-        wrapperArgs =
-          escapeShellArgs neovimConfig.wrapperArgs
-          + " "
-          + extraMakeWrapperArgs
+        wrapperArgs = extraMakeWrapperArgs
           + " "
           + extraMakeWrapperLuaCArgs
           + " "
           + extraMakeWrapperLuaArgs;
-        wrapRc = true;
-      });
+        wrapRc = wrapRc;
+      };
 
     isCustomAppName = appName != null && appName != "nvim";
   in
@@ -199,4 +202,9 @@ with lib;
         + lib.optionalString isCustomAppName ''
           mv $out/bin/nvim $out/bin/${lib.escapeShellArg appName}
         '';
+      meta.mainProgram 
+        = if isCustomAppName 
+            then appName 
+            else oa.meta.mainProgram;
     })
+
