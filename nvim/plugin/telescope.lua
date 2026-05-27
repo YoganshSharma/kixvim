@@ -6,6 +6,21 @@ vim.g.did_load_telescope_plugin = true
 local telescope = require('telescope')
 local actions = require('telescope.actions')
 local builtin = require('telescope.builtin')
+local pickers = require('telescope.pickers')
+local finders = require('telescope.finders')
+local conf = require('telescope.config').values
+
+local function show_messages()
+  local output = vim.fn.execute('messages')
+  local lines = vim.split(output, '\n', { plain = true })
+
+  pickers.new({}, {
+    prompt_title = 'Messages',
+    finder = finders.new_table { results = lines },
+    sorter = conf.generic_sorter {},
+    previewer = false,
+  }):find()
+end
 
 telescope.setup {
   defaults = {
@@ -52,3 +67,4 @@ vim.keymap.set(
 vim.keymap.set('n', '<leader>tn', function()
   telescope.extensions.notify.notify()
 end, { desc = '[telescope] notify' })
+vim.keymap.set('n', '<leader>tm', show_messages, { desc = '[telescope] messages' })

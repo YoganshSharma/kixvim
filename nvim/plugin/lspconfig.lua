@@ -1,5 +1,8 @@
 local lspconfig = vim.lsp.config
 -- lspconfig('rust_analyzer', {}) -- done by rustaceanvim
+vim.lsp.enable('tinymist')
+vim.lsp.enable('ols') -- Odin language server
+vim.lsp.enable('gleam')
 lspconfig('ccls', {})
 lspconfig('cmake', {})
 lspconfig('clangd', {})

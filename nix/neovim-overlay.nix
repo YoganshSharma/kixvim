@@ -37,6 +37,18 @@ let
     };
     doCheck = false;
   };
+  neocodeium-nvim = pkgs.vimUtils.buildVimPlugin {
+    pname = "neocodeium-nvim";
+    version = "scm";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "monkoose";
+      repo = "neocodeium";
+      rev = "a1f73887af6cc4b09cb15cc96e0b72d7932552a5";
+      sha256 = "1h7y1hay5rshnjvikf4vfnqdjxfxs158ayr1hfkzjmahax1s71z0";
+    };
+    doCheck = false;
+  };
 
   # A plugin can either be a package or an attrset, such as
   # { plugin = <plugin>; # the package, e.g. pkgs.vimPlugins.nvim-cmp
@@ -110,6 +122,7 @@ let
       vim-repeat
       # ^ libraries that other plugins depend on
       # bleeding-edge plugins from flake inputs
+      neocodeium-nvim
       # (mkNvimPlugin inputs.wf-nvim "wf.nvim") # (example) keymap hints | https://github.com/Cassin01/wf.nvim
       # ^ bleeding-edge plugins from flake inputs
       which-key-nvim
@@ -129,6 +142,7 @@ let
       pkgs.vimExtraPlugins.nvim-colorizer-catgoose-catgoose
       pkgs.vimExtraPlugins.markdown-preview-nvim-iamcco
       pkgs.vimExtraPlugins.nvim-notify-rcarriga
+      pkgs.vimExtraPlugins.typst-preview-chomsuke-chomosuke
       #pkgs.vimExtraPlugins.fff-nvim-dmtrKovalenko # https://github.com/dmtrKovalenko/fff.nvim
     ];
 

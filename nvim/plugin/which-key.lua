@@ -1,19 +1,31 @@
 local wk = require('which-key')
-wk.add({
-  { "<leader>l",  group = "[l]sp group" },
-  { "<leader>lw", group = "[l]sp [w]orkspace group" },
-  { "<leader>b",  group = "[b]uffer group" },
-  { "<leader>bo", group = "[b]uffer [o]rder group" },
-  { "<leader>g",  group = "[g]it group" },
-  { "<leader>f",  group = "[f]ile" },
-  { "<leader>n",  group = "[n]otify" },
-  { "<leader>gh", group = "[g]it hunk group" },
-  { "<leader>t",  group = "[t]elescope group" },
-  { "<leader>tb", group = "[t]elescope [b]uffers group" },
-  { "<leader>w",  group = "[w]indow group" },
-  { "<leader>z",  group = "[z]k group" },
-  { "<leader>9",  group = "[9]9 group" },
-})
+wk.add {
+  { '<leader>l', group = '[l]sp group' },
+  { '<leader>lw', group = '[l]sp [w]orkspace group' },
+  { '<leader>b', group = '[b]uffer group' },
+  { '<leader>bo', group = '[b]uffer [o]rder group' },
+  { '<leader>g', group = '[g]it group' },
+  { '<leader>a', group = '[a]i group' },
+  { '<leader>f', group = '[f]ile' },
+  { '<leader>n', group = '[n]otify' },
+  { '<leader>gh', group = '[g]it hunk group' },
+  { '<leader>t', group = '[t]elescope group' },
+  { '<leader>tb', group = '[t]elescope [b]uffers group' },
+  { '<leader>w', group = '[w]indow group' },
+  { '<leader>z', group = '[z]k group' },
+  { '<leader>9', group = '[9]9 group' },
+  { '<leader>o', group = '[o]pen Typst' },
+  { '<leader>ad', function() require('neocodeium.commands').disable() end, desc = '[a]i [d]isable' },
+  { '<leader>ae', function() require('neocodeium.commands').enable() end, desc = '[a]i [e]nable' },
+  { '<leader>at', function() require('neocodeium.commands').toggle() end, desc = '[a]i [t]oggle' },
+  { '<leader>ar', function() require('neocodeium.commands').restart() end, desc = '[a]i [r]estart' },
+  { '<leader>al', function() require('neocodeium.commands').open_log() end, desc = '[a]i open [l]og' },
+  { '<leader>ac', function() require('neocodeium').clear() end, desc = '[a]i [c]lear' },
+  { '<leader>aD', function() require('neocodeium.commands').disable_buffer() end, desc = '[a]i [D]isable buffer' },
+  { '<leader>aE', function() require('neocodeium.commands').enable_buffer() end, desc = '[a]i [E]nable buffer' },
+  { '<leader>aT', function() require('neocodeium.commands').toggle_buffer() end, desc = '[a]i [T]oggle buffer' },
+  { '<leader>ah', function() require('neocodeium.commands').chat() end, desc = '[a]i [h]chat' },
+}
 wk.setup {
-  preset = 'helix'
+  preset = 'helix',
 }

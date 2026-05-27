@@ -6,6 +6,7 @@ vim.g.did_load_completion_plugin = true
 local cmp = require('cmp')
 local lspkind = require('lspkind')
 local luasnip = require('luasnip')
+local neocodeium = require('neocodeium')
 
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
@@ -32,7 +33,7 @@ cmp.setup {
   formatting = {
     format = lspkind.cmp_format {
       mode = 'symbol_text',
-      
+
       with_text = true,
       maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
       ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
@@ -46,7 +47,7 @@ cmp.setup {
         path = '[PATH]',
         luasnip = '[SNIP]',
         natdat = '[NatDat]',
-        Copilot = "",
+        neocodeium = '[AI]',
       },
     },
   },
@@ -108,7 +109,7 @@ cmp.setup {
     -- The insertion order influences the priority of the sources
     { name = 'nvim_lsp', keyword_length = 3 },
     { name = 'nvim_lsp_signature_help', keyword_length = 3 },
-    { name = 'copilot' },
+    { name = 'neocodeium' },
     { name = 'buffer' },
     { name = 'path' },
     { name = 'natdat' },
@@ -120,6 +121,16 @@ cmp.setup {
     native_menu = false,
     ghost_text = true,
   },
+}
+
+cmp.event:on('menu_opened', function()
+  neocodeium.clear()
+end)
+
+neocodeium.setup {
+  filter = function()
+    return not cmp.visible()
+  end,
 }
 
 cmp.setup.filetype('lua', {
@@ -152,6 +163,25 @@ cmp.setup.cmdline(':', {
     { name = 'path' },
   },
 })
+
+vim.keymap.set('i', '<A-f>', function()
+  require('neocodeium').accept()
+end, { noremap = true, silent = true, desc = '[ai] accept' })
+vim.keymap.set('i', '<A-w>', function()
+  require('neocodeium').accept_word()
+end, { noremap = true, silent = true, desc = '[ai] accept word' })
+vim.keymap.set('i', '<A-a>', function()
+  require('neocodeium').accept_line()
+end, { noremap = true, silent = true, desc = '[ai] accept line' })
+vim.keymap.set('i', '<A-e>', function()
+  require('neocodeium').cycle_or_complete()
+end, { noremap = true, silent = true, desc = '[ai] cycle' })
+vim.keymap.set('i', '<A-r>', function()
+  require('neocodeium').cycle_or_complete(-1)
+end, { noremap = true, silent = true, desc = '[ai] cycle prev' })
+vim.keymap.set('i', '<A-c>', function()
+  require('neocodeium').clear()
+end, { noremap = true, silent = true, desc = '[ai] clear' })
 
 vim.keymap.set({ 'i', 'c', 's' }, '<C-n>', cmp.complete, { noremap = false, desc = '[cmp] complete' })
 vim.keymap.set({ 'i', 'c', 's' }, '<C-f>', function()
