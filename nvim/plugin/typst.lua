@@ -1,4 +1,4 @@
-require('typst-review').setup({
+require('typst-preview').setup({
   --   -- Setting this true will enable logging debug information to
   -- -- `vim.fn.stdpath 'data' .. '/typst-preview/log.txt'`
   -- debug = false,
